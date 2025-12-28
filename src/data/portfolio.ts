@@ -166,7 +166,7 @@ export const projects = [
 
 export const achievements = [
   {
-    icon: 'Trophy',
+    icon: 'Award',
     title: '9.12 CGPA',
     organization: 'SGT University',
     year: '2024',
@@ -202,10 +202,10 @@ export const achievements = [
   },
   {
     icon: 'Award',
-    title: 'RESTful API Development',
-    organization: 'Professional Skills',
-    year: 'Current',
-    description: 'Expert in designing and building secure, scalable REST and GraphQL APIs',
+    title: 'Hackathon Winner',
+    organization: 'NITI Aayog',
+    year: '2023',
+    description: 'Secured 1st place in a hackathon focused on innovative tech solutions based on blockchain technology',
   },
 ];
 

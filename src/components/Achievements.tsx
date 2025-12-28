@@ -1,4 +1,4 @@
-import { Award, Trophy, Star, Code2, Zap, Users } from 'lucide-react';
+import { GraduationCap , Trophy, Star, Code2, Zap, Users } from 'lucide-react';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 
 export default function Achievements() {
@@ -13,30 +13,30 @@ export default function Achievements() {
 
   const achievements = [
     {
-      icon: Trophy,
+      icon: GraduationCap,
       title: '9.12 CGPA',
       organization: 'SGT University',
       year: '2024',
       description: 'Maintaining excellent academic performance in Computer Science',
     },
     {
-      icon: Code2,
-      title: 'Full Stack Development',
+      icon:  Star,
+      title: 'Hosting Events & Workshops',
       organization: 'Practical Experience',
-      year: 'Current',
-      description: 'Building production-grade applications with React, Node.js, and cloud platforms',
+      year: '2023',
+      description: 'Initiated and led tech workshops and hackathons to foster learning and innovation among peers also hosted events for 100+ attendees',
     },
     {
       icon: Zap,
       title: 'Database Optimization',
-      organization: 'Smile Returns',
-      year: '2024',
+      organization: 'Xellerate Solutions',
+      year: '2025',
       description: 'Improved data retrieval efficiency by 30% through schema optimization',
     },
     {
-      icon: Star,
+      icon: Code2,
       title: 'Multi-Tenant Architecture',
-      organization: 'Xellerate Solutions',
+      organization: 'Smile Returns',
       year: '2024',
       description: 'Designed scalable systems supporting 50,000+ concurrent users',
     },
@@ -48,11 +48,11 @@ export default function Achievements() {
       description: 'Implemented RBAC/ACL models and OAuth2.0 security protocols',
     },
     {
-      icon: Award,
-      title: 'RESTful API Development',
-      organization: 'Professional Skills',
-      year: 'Current',
-      description: 'Expert in designing and building secure, scalable REST and GraphQL APIs',
+      icon: Trophy,
+      title: 'Hackathon Winner',
+      organization: 'NITI Aayog',
+      year: '2023',
+      description: 'Secured 1st place in a hackathon focused on innovative tech solutions based on blockchain technology',
     },
   ];
 

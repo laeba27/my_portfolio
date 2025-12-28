@@ -585,3 +585,80 @@ add lip-sync-like talking loop
 add TypeScript types
 
 clean UI with Tailwind
+You are coding inside a Vite + React + TypeScript project with Tailwind and GSAP already installed.
+
+Goal:
+Implement a 3D avatar guide system in the portfolio. The avatar sits fixed in the bottom-left corner and speaks narration tied to scroll sections. The avatar has two animation states: IDLE and TALKING. When narration audio plays, the avatar switches to TALKING. When audio stops or mute is enabled, it switches back to IDLE. Narration is triggered by scroll-based section visibility. Mute must persist in localStorage.
+
+Stack requirements:
+- three.js via @react-three/fiber and @react-three/drei
+- React functional components with hooks
+- GSAP ScrollTrigger for scroll detection
+- TypeScript strict mode
+- audio playback via HTMLAudioElement
+- file structure described below
+
+File structure to create:
+
+/public
+  avatar.glb
+  /audio
+    hero.mp3
+    about.mp3
+    projects.mp3
+    contact.mp3
+
+/src/components/AvatarCanvas.tsx
+  - Loads GLB model with useGLTF
+  - Uses AnimationMixer
+  - Exports a React component rendering a <Canvas>
+  - Avatar is fixed bottom-left with CSS positioning
+  - Avatar reacts to animation state {IDLE,TALKING}
+
+/src/controllers/AvatarController.ts
+  - Enum: AvatarState = IDLE | TALKING
+  - Export global state object
+  - Export helper methods to set state
+
+/src/controllers/AudioController.ts
+  - Single audio instance
+  - playAudio(src)
+  - stopAudio()
+  - toggleMute()
+  - getMute()
+  - store mute preference in localStorage
+  - when playAudio runs: set AvatarState.TALKING
+  - when stopped or muted: set AvatarState.IDLE
+
+/src/config/avatarNarration.ts
+  - Array of sections:
+      { id: "hero", audio: "/audio/hero.mp3" }
+      { id: "about", audio: "/audio/about.mp3" }
+      { id: "projects", audio: "/audio/projects.mp3" }
+      { id: "contact", audio: "/audio/contact.mp3" }
+
+/src/hooks/useAvatarScroll.ts
+  - Registers GSAP ScrollTrigger
+  - On section enter → play narration
+  - On leave back → stop narration
+  - Avoid overlapping plays
+
+/in the main layout
+  - Render <AvatarCanvas />
+  - Call useAvatarScroll()
+
+CSS:
+- Avatar container should not block pointer events
+- Positioned fixed bottom-left
+
+Rules:
+- Do NOT autoplay audio until first user interaction
+- If muted, avatar must stay IDLE
+- If user scrolls quickly, narration switches cleanly
+- Code must be clean, typed, and modular
+- Keep the avatar small and performance-friendly
+
+Deliverables:
+- Fully working React components and controllers
+- TypeScript friendly code
+- Readable and maintainable structure
