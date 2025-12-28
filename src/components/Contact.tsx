@@ -19,38 +19,36 @@ export default function Contact() {
 
     try {
       // Check if Web3Forms access key is configured
-      if (!web3formsConfig.accessKey || web3formsConfig.accessKey.includes('placeholder')) {
+      if (!web3formsConfig.accessKey || web3formsConfig.accessKey.includes('YOUR_WEB3FORMS')) {
         throw new Error('Web3Forms is not properly configured. Please add your access key.');
       }
+
+      // Prepare form data
+      const formDataToSend = new FormData();
+      formDataToSend.append('access_key', web3formsConfig.accessKey);
+      formDataToSend.append('name', formData.name);
+      formDataToSend.append('email', formData.email);
+      formDataToSend.append('subject', formData.subject);
+      formDataToSend.append('message', formData.message);
 
       // Send form to Web3Forms
       const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          access_key: web3formsConfig.accessKey,
-          name: formData.name,
-          email: formData.email,
-          subject: formData.subject,
-          message: formData.message,
-          from_name: 'Portfolio Contact Form',
-        }),
+        body: formDataToSend,
       });
 
       const data = await response.json();
 
-      if (!data.success) {
+      if (data.success) {
+        setStatus('success');
+        setFormData({ name: '', email: '', subject: '', message: '' });
+
+        setTimeout(() => {
+          setStatus('idle');
+        }, 5000);
+      } else {
         throw new Error(data.message || 'Failed to send message');
       }
-
-      setStatus('success');
-      setFormData({ name: '', email: '', subject: '', message: '' });
-
-      setTimeout(() => {
-        setStatus('idle');
-      }, 5000);
     } catch (error) {
       console.error('Error submitting form:', error);
       setStatus('error');

@@ -220,10 +220,10 @@ export const navSections = [
 ];
 
 export const web3formsConfig = {
-  accessKey: 'YOUR_WEB3FORMS_ACCESS_KEY', // Get from https://web3forms.com/
+  accessKey: '173a6e9e-6404-4660-8381-88f16393fab5', // Get from https://web3forms.com/
   // To get your access key:
   // 1. Go to https://web3forms.com/
   // 2. Sign up and verify your email
   // 3. Copy your access key from the dashboard
-  // 4. Replace 'YOUR_WEB3FORMS_ACCESS_KEY' with your actual key
+  // 4. Replace with your actual key
 };
